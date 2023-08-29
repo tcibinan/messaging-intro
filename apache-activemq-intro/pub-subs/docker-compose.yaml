@@ -1,0 +1,42 @@
+version: '3'
+services:
+  heartbeat-publisher-service:
+    build:
+      context: heartbeat-publisher-service
+    depends_on:
+      - apache-activemq
+    environment:
+      ACTIVEMQ_URL: ${ACTIVEMQ_URL}
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD}
+      HEARTBEAT_PUBLISHER_SERVICE_CLIENT_ID: heartbeat-publisher
+  durable-heartbeat-subscriber-service:
+    container_name: durable-heartbeat-subscriber-service
+    build:
+      context: heartbeat-subscriber-service
+    depends_on:
+      - apache-activemq
+    environment:
+      ACTIVEMQ_URL: ${ACTIVEMQ_URL}
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD}
+      HEARTBEAT_SUBSCRIBER_SERVICE_CLIENT_ID: durable-heartbeat-subscriber
+      HEARTBEAT_SUBSCRIBER_SERVICE_CLIENT_DURABLE: "true"
+  non-durable-heartbeat-subscriber-service:
+    container_name: non-durable-heartbeat-subscriber-service
+    build:
+      context: heartbeat-subscriber-service
+    depends_on:
+      - apache-activemq
+    environment:
+      ACTIVEMQ_URL: ${ACTIVEMQ_URL}
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD}
+      HEARTBEAT_SUBSCRIBER_SERVICE_CLIENT_ID: non-durable-heartbeat-subscriber
+      HEARTBEAT_SUBSCRIBER_SERVICE_CLIENT_DURABLE: "false"
+  apache-activemq:
+    build:
+      context: apache-activemq
+    ports:
+      - 8161:8161
+      - 61616:61616
