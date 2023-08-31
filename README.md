@@ -18,11 +18,11 @@ sleep 30
 
 ./gradlew apache-activemq-intro:pub-subs:composeUp
 
-sleep 10
+sleep 30
 
 ./gradlew apache-activemq-intro:pub-subs:composeLogs
 
-# Check that both subscribers received all heartbeats
+# Check that both subscribers have received all messages
 less apache-activemq-intro/pub-subs/build/containers-logs/durable-heartbeat-subscriber-service.log
 less apache-activemq-intro/pub-subs/build/containers-logs/non-durable-heartbeat-subscriber-service.log 
 
@@ -41,7 +41,7 @@ sleep 30
 
 ./gradlew apache-activemq-intro:request-reply:composeLogs
 
-# Check that both subscribers received all heartbeats
+# Check that both services have received and published messages
 less apache-activemq-intro/request-reply/build/containers-logs/equation-requester-service.log
 less apache-activemq-intro/request-reply/build/containers-logs/equation-replier-service.log
 
@@ -60,10 +60,10 @@ sleep 30
 
 ./gradlew apache-activemq-intro:virtual-topic:composeLogs
 
-# Check that two instances received different heartbeats
+# Check that both service instances have received unique messages
 less apache-activemq-intro/virtual-topic/build/containers-logs/first-heartbeat-subscriber-service.log
 
-# Check that two instances received different heartbeats
+# Check that both service instances have received unique messages
 less apache-activemq-intro/virtual-topic/build/containers-logs/second-heartbeat-subscriber-service.log
 
 ./gradlew apache-activemq-intro:pub-subs:composeDown
