@@ -1,7 +1,14 @@
 rootProject.name="messaging-intro"
 
 include 'apache-activemq-intro'
+
 include 'apache-activemq-intro:pub-subs'
 include 'apache-activemq-intro:pub-subs:heartbeat-publisher-service'
 include 'apache-activemq-intro:pub-subs:heartbeat-subscriber-service'
 include 'apache-activemq-intro:pub-subs:heartbeat-message'
+
+
+include 'apache-activemq-intro:request-reply'
+include 'apache-activemq-intro:request-reply:equation-requester-service'
+include 'apache-activemq-intro:request-reply:equation-replier-service'
+include 'apache-activemq-intro:request-reply:equation-message'

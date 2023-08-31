@@ -28,3 +28,20 @@ less apache-activemq-intro/pub-subs/build/containers-logs/non-durable-heartbeat-
 
 ./gradlew apache-activemq-intro:pub-subs:composeDown
 ```
+
+### Request Replier
+
+```bash
+./gradlew apache-activemq-intro:request-reply:composeUp
+
+# ActiveMQ console (user: admin, pass: admin)
+# http://localhost:8761
+
+sleep 30
+
+./gradlew apache-activemq-intro:request-reply:composeLogs
+
+# Check that both subscribers received all heartbeats
+less apache-activemq-intro/request-reply/build/containers-logs/equation-requester-service.log
+less apache-activemq-intro/request-reply/build/containers-logs/equation-replier-service.log
+```

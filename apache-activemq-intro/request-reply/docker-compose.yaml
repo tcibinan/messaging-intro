@@ -1,0 +1,26 @@
+version: '3'
+services:
+  equation-requester-service:
+    build:
+      context: equation-requester-service
+    depends_on:
+      - apache-activemq
+    environment:
+      ACTIVEMQ_URL: ${ACTIVEMQ_URL}
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD}
+  equation-replier-service:
+    build:
+      context: equation-replier-service
+    depends_on:
+      - apache-activemq
+    environment:
+      ACTIVEMQ_URL: ${ACTIVEMQ_URL}
+      ACTIVEMQ_USER: ${ACTIVEMQ_USER}
+      ACTIVEMQ_PASSWORD: ${ACTIVEMQ_PASSWORD}
+  apache-activemq:
+    build:
+      context: apache-activemq
+    ports:
+      - 8161:8161
+      - 61616:61616
