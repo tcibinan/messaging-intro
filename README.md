@@ -44,6 +44,8 @@ sleep 30
 # Check that both subscribers received all heartbeats
 less apache-activemq-intro/request-reply/build/containers-logs/equation-requester-service.log
 less apache-activemq-intro/request-reply/build/containers-logs/equation-replier-service.log
+
+./gradlew apache-activemq-intro:pub-subs:composeDown
 ```
 
 ### Virtual Topic
@@ -63,4 +65,6 @@ less apache-activemq-intro/virtual-topic/build/containers-logs/first-heartbeat-s
 
 # Check that two instances received different heartbeats
 less apache-activemq-intro/virtual-topic/build/containers-logs/second-heartbeat-subscriber-service.log
+
+./gradlew apache-activemq-intro:pub-subs:composeDown
 ```
