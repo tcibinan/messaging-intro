@@ -45,3 +45,22 @@ sleep 30
 less apache-activemq-intro/request-reply/build/containers-logs/equation-requester-service.log
 less apache-activemq-intro/request-reply/build/containers-logs/equation-replier-service.log
 ```
+
+### Virtual Topic
+
+```bash
+./gradlew apache-activemq-intro:virtual-topic:composeUp
+
+# ActiveMQ console (user: admin, pass: admin)
+# http://localhost:8761
+
+sleep 30
+
+./gradlew apache-activemq-intro:virtual-topic:composeLogs
+
+# Check that two instances received different heartbeats
+less apache-activemq-intro/virtual-topic/build/containers-logs/first-heartbeat-subscriber-service.log
+
+# Check that two instances received different heartbeats
+less apache-activemq-intro/virtual-topic/build/containers-logs/second-heartbeat-subscriber-service.log
+```

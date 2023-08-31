@@ -7,8 +7,12 @@ include 'apache-activemq-intro:pub-subs:heartbeat-publisher-service'
 include 'apache-activemq-intro:pub-subs:heartbeat-subscriber-service'
 include 'apache-activemq-intro:pub-subs:heartbeat-message'
 
-
 include 'apache-activemq-intro:request-reply'
 include 'apache-activemq-intro:request-reply:equation-requester-service'
 include 'apache-activemq-intro:request-reply:equation-replier-service'
 include 'apache-activemq-intro:request-reply:equation-message'
+
+include 'apache-activemq-intro:virtual-topic'
+include 'apache-activemq-intro:virtual-topic:heartbeat-publisher-service'
+include 'apache-activemq-intro:virtual-topic:heartbeat-subscriber-service'
+include 'apache-activemq-intro:virtual-topic:heartbeat-message'
