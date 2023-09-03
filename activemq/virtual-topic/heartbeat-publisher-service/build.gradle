@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-	implementation project(':apache-activemq-intro:virtual-topic:heartbeat-message')
+	implementation project(':activemq:virtual-topic:heartbeat-message')
 
 	implementation 'org.springframework.boot:spring-boot-starter-activemq'
 

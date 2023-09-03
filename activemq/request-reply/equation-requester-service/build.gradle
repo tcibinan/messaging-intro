@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-	implementation project(':apache-activemq-intro:request-reply:equation-message')
+	implementation project(':activemq:request-reply:equation-message')
 
 	implementation 'org.springframework.boot:spring-boot-starter-activemq'
 

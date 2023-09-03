@@ -1,18 +1,18 @@
-rootProject.name="messaging-intro"
+rootProject.name='messaging-intro'
 
-include 'apache-activemq-intro'
+include 'activemq'
 
-include 'apache-activemq-intro:pub-subs'
-include 'apache-activemq-intro:pub-subs:heartbeat-publisher-service'
-include 'apache-activemq-intro:pub-subs:heartbeat-subscriber-service'
-include 'apache-activemq-intro:pub-subs:heartbeat-message'
+include 'activemq:pub-subs'
+include 'activemq:pub-subs:heartbeat-publisher-service'
+include 'activemq:pub-subs:heartbeat-subscriber-service'
+include 'activemq:pub-subs:heartbeat-message'
 
-include 'apache-activemq-intro:request-reply'
-include 'apache-activemq-intro:request-reply:equation-requester-service'
-include 'apache-activemq-intro:request-reply:equation-replier-service'
-include 'apache-activemq-intro:request-reply:equation-message'
+include 'activemq:request-reply'
+include 'activemq:request-reply:equation-requester-service'
+include 'activemq:request-reply:equation-replier-service'
+include 'activemq:request-reply:equation-message'
 
-include 'apache-activemq-intro:virtual-topic'
-include 'apache-activemq-intro:virtual-topic:heartbeat-publisher-service'
-include 'apache-activemq-intro:virtual-topic:heartbeat-subscriber-service'
-include 'apache-activemq-intro:virtual-topic:heartbeat-message'
+include 'activemq:virtual-topic'
+include 'activemq:virtual-topic:heartbeat-publisher-service'
+include 'activemq:virtual-topic:heartbeat-subscriber-service'
+include 'activemq:virtual-topic:heartbeat-message'
