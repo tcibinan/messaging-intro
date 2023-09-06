@@ -16,3 +16,11 @@ include 'activemq:virtual-topic'
 include 'activemq:virtual-topic:heartbeat-publisher-service'
 include 'activemq:virtual-topic:heartbeat-subscriber-service'
 include 'activemq:virtual-topic:heartbeat-message'
+
+include 'rabbitmq'
+
+include 'rabbitmq:notification-v1'
+include 'rabbitmq:notification-v1:notification-publisher'
+include 'rabbitmq:notification-v1:notification-consumer'
+include 'rabbitmq:notification-v1:notification-fail-consumer'
+include 'rabbitmq:notification-v1:notification-support'
