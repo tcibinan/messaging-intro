@@ -5,15 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.tcibinan.notification.consumer.exception.NotificationSendingException;
 import org.tcibinan.notification.consumer.message.Notification;
 
-public class SimpleNotificationSender implements NotificationSender {
+public class PushNotificationSender implements NotificationSender {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleNotificationSender.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PushNotificationSender.class);
 
     @Override
     public void send(final Notification notification) {
         if (notification.receiver() == null) {
-            throw new NotificationSendingException("Notification receiver is missing");
+            throw new NotificationSendingException("Push notification receiver is missing");
         }
-        LOGGER.info("Notification has been sent: {}", notification);
+        LOGGER.info("Push notification has been sent: {}", notification);
     }
 }

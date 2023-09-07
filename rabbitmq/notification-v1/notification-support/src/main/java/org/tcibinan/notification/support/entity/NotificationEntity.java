@@ -11,6 +11,7 @@ public class NotificationEntity {
     @GeneratedValue
     private Long id;
     private String message;
+    private NotificationEntityType type;
     private String receiver;
     private String failReason;
     private NotificationEntityStatus status;
@@ -29,6 +30,14 @@ public class NotificationEntity {
 
     public void setMessage(final String message) {
         this.message = message;
+    }
+
+    public NotificationEntityType getType() {
+        return type;
+    }
+
+    public void setType(final NotificationEntityType type) {
+        this.type = type;
     }
 
     public String getReceiver() {

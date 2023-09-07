@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfiguration {
 
     public static final String backlogExchange = "notification.backlog";
-    public static final String backlogAllRoutingKey = "notification.backlog.all";
+    public static final String backlogEmailSubmittedRoutingKey = "notification.backlog.email.submitted";
+    public static final String backlogPushSubmittedRoutingKey = "notification.backlog.push.submitted";
 
     @Bean
     TopicExchange exchange() {

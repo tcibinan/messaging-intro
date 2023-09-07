@@ -13,18 +13,25 @@ public class NotificationConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationConsumer.class);
 
-    private final NotificationSender sender;
+    private final NotificationSender emailSender;
+    private final NotificationSender pushSender;
     private final NotificationFailPublisher failPublisher;
 
-    public NotificationConsumer(final NotificationSender sender, final NotificationFailPublisher failPublisher) {
-        this.sender = sender;
+    public NotificationConsumer(final NotificationSender emailSender,
+                                final NotificationSender pushSender,
+                                final NotificationFailPublisher failPublisher) {
+        this.emailSender = emailSender;
+        this.pushSender = pushSender;
         this.failPublisher = failPublisher;
     }
 
     public void receive(final Notification notification) {
         LOGGER.info("Received {}.", notification);
         try {
-            sender.send(notification);
+            switch (notification.type()) {
+                case EMAIL -> emailSender.send(notification);
+                case PUSH -> pushSender.send(notification);
+            }
         } catch (NotificationSendingException e) {
             NotificationFail notificationFail = new NotificationFail(e.getMessage(), notification);
             failPublisher.publish(notificationFail);

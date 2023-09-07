@@ -23,8 +23,10 @@ import java.util.Map;
 public class RabbitMQConfiguration {
 
     public static final String backlogExchange = "notification.backlog";
-    public static final String backlogAllBinding = "notification.backlog.*";
-    public static final String backlogAllQueue = "notification.backlog.all";
+    public static final String backlogEmailQueue = "notification.backlog.email";
+    public static final String backlogEmailBinding = "notification.backlog.email.*";
+    public static final String backlogPushQueue = "notification.backlog.push";
+    public static final String backlogPushBinding = "notification.backlog.push.*";
 
     public static final String failExchange = "notification.failed";
     public static final String failAllRoutingKey = "notification.failed.all";
@@ -35,13 +37,23 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    Queue backlogAllQueue() {
-        return new Queue(backlogAllQueue, false);
+    Queue backlogEmailQueue() {
+        return new Queue(backlogEmailQueue, false);
     }
 
     @Bean
-    Binding backlogAllBinding(Queue backlogAllQueue, TopicExchange backlogExchange) {
-        return BindingBuilder.bind(backlogAllQueue).to(backlogExchange).with(backlogAllBinding);
+    Binding backlogEmailBinding(Queue backlogEmailQueue, TopicExchange backlogExchange) {
+        return BindingBuilder.bind(backlogEmailQueue).to(backlogExchange).with(backlogEmailBinding);
+    }
+
+    @Bean
+    Queue backlogPushQueue() {
+        return new Queue(backlogPushQueue, false);
+    }
+
+    @Bean
+    Binding backlogPushBinding(Queue backlogPushQueue, TopicExchange backlogExchange) {
+        return BindingBuilder.bind(backlogPushQueue).to(backlogExchange).with(backlogPushBinding);
     }
 
     @Bean
@@ -49,7 +61,7 @@ public class RabbitMQConfiguration {
                                              MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(backlogAllQueue);
+        container.setQueueNames(backlogEmailQueue, backlogPushQueue);
         container.setMessageListener(listenerAdapter);
         return container;
     }

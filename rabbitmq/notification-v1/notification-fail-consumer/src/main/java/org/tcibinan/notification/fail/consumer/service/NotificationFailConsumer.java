@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.tcibinan.notification.fail.consumer.entity.NotificationEntity;
 import org.tcibinan.notification.fail.consumer.entity.NotificationEntityStatus;
-import org.tcibinan.notification.fail.consumer.message.Notification;
+import org.tcibinan.notification.fail.consumer.mapper.NotificationMapper;
 import org.tcibinan.notification.fail.consumer.message.NotificationFail;
 import org.tcibinan.notification.fail.consumer.repository.NotificationEntityRepository;
 
@@ -15,17 +15,18 @@ public class NotificationFailConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationFailConsumer.class);
 
     private final NotificationEntityRepository repository;
+    private final NotificationMapper mapper;
 
-    public NotificationFailConsumer(NotificationEntityRepository repository) {
+    public NotificationFailConsumer(final NotificationEntityRepository repository,
+                                    final NotificationMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
-    public void receive(NotificationFail notificationFail) {
+    public void receive(final NotificationFail notificationFail) {
         LOGGER.info("Received {}.", notificationFail);
-        NotificationEntity notificationEntity = new NotificationEntity();
+        final NotificationEntity notificationEntity = mapper.map(notificationFail.notification());
         notificationEntity.setFailReason(notificationFail.reason());
-        notificationEntity.setMessage(notificationFail.notification().message());
-        notificationEntity.setReceiver(notificationFail.notification().receiver());
         notificationEntity.setStatus(NotificationEntityStatus.PENDING);
         LOGGER.info("Persisting {}...", notificationEntity);
         repository.save(notificationEntity);
