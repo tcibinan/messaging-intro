@@ -79,8 +79,22 @@ less activemq/virtual-topic/build/containers-logs/second-heartbeat-subscriber-se
 # RabbitMQ console (user: guest, pass: guest)
 # http://localhost:15672
 
-# Support swagger
+# Support service swagger
 # http://localhost:8080
 
 ./gradlew rabbitmq:notification-v1:composeDown
+```
+
+### Notification v3
+
+```bash
+./gradlew rabbitmq:notification-v3:composeUp
+
+# RabbitMQ console (user: guest, pass: guest)
+# http://localhost:15672
+
+# Support service swagger
+# http://localhost:8080
+
+./gradlew rabbitmq:notification-v3:composeDown
 ```
