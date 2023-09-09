@@ -1,0 +1,74 @@
+version: '3'
+services:
+  publisher:
+    build:
+      context: publisher
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+  consumer:
+    build:
+      context: consumer
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+  consumer-failed:
+    build:
+      context: consumer-failed
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      POSTGRES_URL: jdbc:postgresql://postgres/${NOTIFICATION_SUPPORT_POSTGRES_DB}
+      POSTGRES_USER: ${NOTIFICATION_SUPPORT_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${NOTIFICATION_SUPPORT_POSTGRES_PASSWORD}
+  consumer-dead:
+    build:
+      context: consumer-dead
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      POSTGRES_URL: jdbc:postgresql://postgres/${NOTIFICATION_SUPPORT_POSTGRES_DB}
+      POSTGRES_USER: ${NOTIFICATION_SUPPORT_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${NOTIFICATION_SUPPORT_POSTGRES_PASSWORD}
+  support:
+    build:
+      context: support
+    ports:
+      - 8080:8080
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      POSTGRES_URL: jdbc:postgresql://postgres/${NOTIFICATION_SUPPORT_POSTGRES_DB}
+      POSTGRES_USER: ${NOTIFICATION_SUPPORT_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${NOTIFICATION_SUPPORT_POSTGRES_PASSWORD}
+  postgres:
+    image: postgres:15.3
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: ${NOTIFICATION_SUPPORT_POSTGRES_DB}
+      POSTGRES_USER: ${NOTIFICATION_SUPPORT_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${NOTIFICATION_SUPPORT_POSTGRES_PASSWORD}
+  rabbitmq:
+    image: rabbitmq:3.12.4-management
+    ports:
+      - 5672:5672
+      - 15672:15672
