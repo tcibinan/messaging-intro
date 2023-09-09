@@ -78,7 +78,7 @@ less activemq/virtual-topic/build/containers-logs/second-heartbeat-subscriber-se
 # http://localhost:15672
 
 # Support service swagger
-# http://localhost:8080
+# http://localhost:8080/swagger-ui/index.html
 
 ./gradlew rabbitmq:composeDown
 ```
