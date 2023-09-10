@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.tcibinan.kafka'
+version = '0.1'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
