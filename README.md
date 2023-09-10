@@ -82,3 +82,11 @@ less activemq/virtual-topic/build/containers-logs/second-heartbeat-subscriber-se
 
 ./gradlew rabbitmq:composeDown
 ```
+
+## Kafka
+
+```bash
+./gradlew kafka:composeUp
+
+./gradlew kafka:composeDown
+```
