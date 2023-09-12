@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(':kafka:vehicle-message')
+    implementation project(':kafka:vehicle:vehicle-message')
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.kafka:spring-kafka'

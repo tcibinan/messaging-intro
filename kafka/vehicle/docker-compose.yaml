@@ -13,7 +13,7 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9092,kafka-3:9092
   distance-tracker:
     build:
-      context: distance-tracker
+      context: ../distance-tracker
     depends_on:
       - kafka-1
       - kafka-2
@@ -26,7 +26,7 @@ services:
       KAFKA_CONSUMER_GROUP_ID: distance-tracker
   distance-logger:
     build:
-      context: distance-logger
+      context: ../distance-logger
     depends_on:
       - kafka-1
       - kafka-2

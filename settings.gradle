@@ -25,7 +25,11 @@ include 'rabbitmq:consumer-dead'
 include 'rabbitmq:support'
 
 include 'kafka'
-include 'kafka:vehicle-api'
-include 'kafka:vehicle-message'
-include 'kafka:distance-tracker'
-include 'kafka:distance-logger'
+
+include 'kafka:producer-consumer'
+
+include 'kafka:vehicle'
+include 'kafka:vehicle:vehicle-api'
+include 'kafka:vehicle:vehicle-message'
+include 'kafka:vehicle:distance-tracker'
+include 'kafka:vehicle:distance-logger'

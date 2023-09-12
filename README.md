@@ -85,8 +85,16 @@ less activemq/virtual-topic/build/containers-logs/second-heartbeat-subscriber-se
 
 ## Kafka
 
-```bash
-./gradlew kafka:composeUp
+### Producer Consumer
 
-./gradlew kafka:composeDown
+```bash
+./gradlew kafka:producer-consumer:build
+```
+
+### Vehicle
+
+```bash
+./gradlew kafka:vehicle:composeUp
+
+./gradlew kafka:vehicle:composeDown
 ```
