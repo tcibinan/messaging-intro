@@ -59,8 +59,6 @@
 
 ### Streams
 
-> Conductor console http://localhost:8080 (user: admin@admin.io, pass: admin)
-
 ```bash
 ./gradlew kafka:streams:test
 
