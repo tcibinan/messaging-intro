@@ -45,7 +45,7 @@
 ### Producer Consumer
 
 ```bash
-./gradlew kafka:producer-consumer:build
+./gradlew kafka:producer-consumer:test
 ```
 
 ### Vehicle
@@ -55,4 +55,15 @@
 ```bash
 ./gradlew kafka:vehicle:composeUp
 ./gradlew kafka:vehicle:composeDown
+```
+
+### Streams
+
+> Conductor console http://localhost:8080 (user: admin@admin.io, pass: admin)
+
+```bash
+./gradlew kafka:streams:test
+
+./gradlew kafka:streams:composeUp
+./gradlew kafka:streams:composeDown
 ```

@@ -18,6 +18,7 @@ include 'activemq:virtual-topic:heartbeat-subscriber-service'
 include 'activemq:virtual-topic:heartbeat-message'
 
 include 'rabbitmq'
+
 include 'rabbitmq:publisher'
 include 'rabbitmq:consumer'
 include 'rabbitmq:consumer-failed'
@@ -33,3 +34,5 @@ include 'kafka:vehicle:vehicle-api'
 include 'kafka:vehicle:vehicle-message'
 include 'kafka:vehicle:distance-tracker'
 include 'kafka:vehicle:distance-logger'
+
+include 'kafka:streams'
